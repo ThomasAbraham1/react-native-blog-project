@@ -16,7 +16,7 @@ app.use(cookieParser());
 app.use(cors({
     // origin: ["https://blog-react-1bg2.onrender.com, https://main--tomsblog.netlify.app/"],
     origin: ["http://localhost:5173", "http://localhost:8081",
-        "exp://192.168.1.43:8081"],
+        "exp://192.168.1.43:8081", "https://react-native-blog--ai06ccfss9.expo.app/"],
     methods: ["GET", "POST"],
     credentials: true,
 }));

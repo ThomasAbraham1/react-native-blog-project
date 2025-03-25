@@ -3,8 +3,8 @@ let postModel;
 let userModel;
 // Connection to database
 
-mongoose.connect('mongodb://localhost:27017/blog').then(() => {
-    // mongoose.connect("mongodb+srv://cta102938:i0MMJrY899VLTL82@cluster0.qesx1ag.mongodb.net/blog").then(() => {
+// mongoose.connect('mongodb://localhost:27017/blog').then(() => {
+    mongoose.connect("mongodb+srv://cta102938:i0MMJrY899VLTL82@cluster0.qesx1ag.mongodb.net/blog").then(() => {
     console.log("Connected to DB");
 }).catch((err) => {
     console.log(err);
