@@ -14,12 +14,15 @@ app.use(bodyParser.json());
 // Use cookieParser
 app.use(cookieParser());
 app.use(cors({
-    // origin: ["https://blog-react-1bg2.onrender.com, https://main--tomsblog.netlify.app/"],
-    origin: ["http://localhost:5173", "http://localhost:8081",
-        "exp://192.168.1.43:8081", "https://react-native-blog--ai06ccfss9.expo.app/"],
-    methods: ["GET", "POST"],
-    credentials: true,
-}));
+    origin: [
+      "https://react-native-blog--ai06ccfss9.expo.app", // Your Expo app URL
+      "http://localhost:3000", // Local backend testing (optional)
+      "http://localhost:8081", // Local Expo dev (optional)
+      "exp://192.168.1.43:8081", // Local Expo Go (optional)
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"], // Include all methods you use
+    credentials: true, // If you’re using cookies/JWT with credentials
+  }));
 
 
 app.use("/", router);
