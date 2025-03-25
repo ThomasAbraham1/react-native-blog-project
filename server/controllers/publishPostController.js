@@ -4,20 +4,21 @@ const { authorize } = require('../auth');
 
 // Controller for posting blog posts
 const publishPostController = async (req, res) => {
+        const postTitle = req.body.postTitle; 
+        const postContent = req.body.postContent;
+        console.log(postTitle + " " + postContent) 
     async function postFunction({id}) {
         const userId = id;
-        const postTitle = req.body.postTitle;
-        const postContent = req.body.postContent;
-        // Find the user and push the post
+        // Find the user and push the post   
         await userModel.findOne({ _id: userId }).then((user) => {
-            user.posts.push({
+            user.posts.push({ 
                 postTitle: postTitle,
                 postContent: postContent,
             });
             user.save().then((data) => {
                 res.status(200).json({
-                    isExpired: false, 
-                    message: "Pushed the post content into users collection"
+                    isExpired: false,     
+                    message: "Pushed the post content into users collection" 
                 }) 
             })
         }).catch((err) => {

@@ -1,7 +1,7 @@
 const express = require('express');
 var jwt = require('jsonwebtoken');
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const { router } = require('./routes/routes')
 const cookieParser = require("cookie-parser");
@@ -15,7 +15,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors({
     // origin: ["https://blog-react-1bg2.onrender.com, https://main--tomsblog.netlify.app/"],
-    origin: ["http://localhost:5173"],
+    origin: ["http://localhost:5173", "http://localhost:8081",
+        "exp://192.168.1.43:8081"],
     methods: ["GET", "POST"],
     credentials: true,
 }));

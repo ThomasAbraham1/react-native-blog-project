@@ -2,9 +2,12 @@ var jwt = require('jsonwebtoken');
 const { userModel } = require('../db');
 
 
- 
+
 const authorize = async (req, res, { operation, test }) => {
-    var token = req.cookies.jwt;
+    // var token = req.cookies.jwt;
+    var token = req.header('Authorization').replace('Bearer ', '');
+    console.log(token);
+
     // When token has been destroyed by client - Logout condition
     if (!token) {
         res.status(409).json({
@@ -21,11 +24,13 @@ const authorize = async (req, res, { operation, test }) => {
             })
             return
         }
-        id = token.id;
+
+        // id = token.id;
+        var id = req.params.userId;
+        console.log(id);
         // Check if user is available in database
         const data = await userModel.findOne({ _id: id })
         if (data == null) {
-            console.log("monkey")
             // If not, expire the session
             res.status(409).json({
                 isExpired: true,

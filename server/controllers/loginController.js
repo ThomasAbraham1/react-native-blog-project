@@ -21,15 +21,16 @@ async function loginController(req, res) {
             maxAge: 1 * 24 * 60 * 60 * 1000,
         });
         res.status(200).json({
+            token: token,
             userId: data._id,
             message: "User is welcome!",
         })
     }).catch((err) => {
         if (err.code == 11000) {
             res.status(403).json({
-                message: "Email does not exist"
+                message: "Email does not exist" 
             })
-        }
+        } 
         if (err.code == 11001) {
             res.status(403).json({
                 message: "You're OAuth user, try social logins"

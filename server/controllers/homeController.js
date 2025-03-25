@@ -5,6 +5,9 @@ const { authorize } = require('../auth');
 
 async function homeController(req, res, next) {
     // Finding the posts of user, while authorizing their request also
+//     console.log(req.params)
+// var token = req.header('Authorization').replace('Bearer ', '');
+// console.log(token)
     async function getPosts({ id }) {
         try {
             await userModel.findOne({ _id: id }).then((data) => {
@@ -19,7 +22,7 @@ async function homeController(req, res, next) {
         }catch(err){
             console.log(err);
         }
-    }
+    } 
     authorize(req, res, { operation: getPosts, test: 1 });
 }
 

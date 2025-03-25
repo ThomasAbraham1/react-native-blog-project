@@ -13,11 +13,11 @@ const router = express.Router();
 
 
 router.post("/register", registerController);
-router.get("/", homeController);
-router.post("/", publishPostController);
+router.get("/:userId", homeController);
+router.post("/post/:userId", publishPostController);
 router.post("/login", loginController);
-router.post("/delete", deleteController);
-router.post("/update", updateController);
+router.post("/delete/:userId", deleteController);
+router.post("/update/:userId", updateController);
 router.post("/oauth", oAuthRedirect);
 router.get("/google/auth", oAuthGoogleCallback);
 router.get("/facebook/auth", oAuthFacebookCallback);

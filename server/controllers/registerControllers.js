@@ -1,37 +1,40 @@
 const { userModel } = require('../db');
-var jwt = require('jsonwebtoken');
-
-
+const jwt = require('jsonwebtoken');
+ 
 async function registerController(req, res) {
-    const userName = req.body.userName;
-    const password = req.body.password;
+  try {
+    const { userName, password } = req.body;
     console.log('userName: ' + userName + ' Password: ' + password);
-    userModel.create({ username: userName, password: password
-        // , posts: [{ postTitle: "kjlj", postContent: "lkjlkj" }]
-         }).then((data) => {
-        console.log(data);
-        const id = data._id;
-        const token = jwt.sign({ id }, 'bar', { expiresIn: 1 * 24 * 60 * 60 });
-        res.cookie("jwt", token, {
-            withCredentials: true,
-            httpOnly: false,
-            maxAge: 1 * 24 * 60 * 60 * 1000, 
-        });
-        res.status(200).json({
-            userId: data._id,
-            message: "Registered the user!",
-        })
-    }).catch((err) => {
-        if (err.code == 11000) {
-            res.status(403).json({
-                message: "Account already registered, sign in"
-            })
-        }
-        console.log(err);
-        console.log("error exists");
-    })
+
+    // Create user and await the result
+    const data = await userModel.create({
+      username: userName,
+      password: password,
+    });
+
+    console.log('Created user:', data);
+    const id = data._id;
+    const token = jwt.sign({ id }, 'bar', { expiresIn: 1 * 24 * 60 * 60 });
+
+    // Send success response
+    res.status(200).json({
+      token: token,
+      userId: id,
+      message: 'Registered the user!',
+    });
+  } catch (err) {
+    console.log('Error:', err);
+    if (err.code === 11000) {
+      return res.status(403).json({
+        message: 'Account already registered, sign in',
+      });
+    }
+    res.status(500).json({
+      message: 'Server error during registration',
+    });
+  }
 }
 
 module.exports = {
-    registerController
-}
+  registerController,
+};

@@ -5,7 +5,7 @@ const { authorize } = require('../auth');
 async function deleteController(req,res){
 
     async function deletePostOperation({id}){
-        userModel.findOneAndUpdate({_id:id}, {$pull: {posts: {_id:req.body.id}}}).then((data)=>{
+        userModel.findOneAndUpdate({_id:id}, {$pull: {posts: {_id:req.body.postId}}}).then((data)=>{
             console.log(data);
             res.status(200).json({
                 isExpired: false,
