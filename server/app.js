@@ -1,7 +1,7 @@
 const express = require('express');
 var jwt = require('jsonwebtoken');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const { router } = require('./routes/routes')
 const cookieParser = require("cookie-parser");
