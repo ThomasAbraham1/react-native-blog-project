@@ -1,0 +1,43 @@
+# Task Manager App
+
+A full-stack mobile application built to demonstrate my skills in React Native and Node.js development. This app allows users to sign up, log in, and manage tasks (create, read, update, delete) with a seamless user experience. It was developed as a test project for [Company Name] to evaluate my capabilities in frontend and backend development.
+
+## Features
+- **Authentication:** Secure signup and login using email and password with JWT-based sessions.
+- **Task Management:**
+  - View all tasks on the Home screen with pull-to-refresh.
+  - Add new tasks with title and description.
+  - View, edit, or delete tasks via a details screen.
+- **Logout:** Clear session and return to login screen.
+- **Responsive UI:** Built with React Native Paper for a clean, modern look.
+
+## Tech Stack
+### Frontend
+- **React Native (Expo):** Cross-platform mobile app framework.
+- **React Navigation:** Stack navigation for screen transitions.
+- **AsyncStorage:** Stores JWT tokens for session persistence.
+- **React Native Paper:** UI component library for consistent design.
+- **Axios:** HTTP client for API requests.
+
+### Backend
+- **Node.js + Express:** RESTful API server.
+- **MongoDB + Mongoose:** Database and ORM for task and user data.
+- **JWT (jsonwebtoken):** Token-based authentication.
+- **bcrypt.js:** Password hashing for security.
+- **CORS:** Enabled cross-origin requests from the frontend.
+
+## Deployment
+- **Backend:** Hosted on [Render](https://render.com) at `https://react-native-blog-project.onrender.com`.
+- **Frontend:** Published via Expo, accessible at `https://react-native-blog--ai06ccfss9.expo.app`.
+
+## Prerequisites
+- **Node.js:** v16 or higher.
+- **MongoDB:** Local instance or MongoDB Atlas (cloud).
+- **Expo CLI:** Install globally with `npm install -g expo-cli`.
+- **Expo Go:** App on your phone for testing (iOS/Android).
+
+## Setup Instructions
+Clone this repository to your local machine:
+```bash
+git clone https://github.com/yourusername/task-manager.git
+cd task-manager
